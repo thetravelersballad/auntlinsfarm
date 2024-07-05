@@ -9,13 +9,13 @@
 
 body{
 	font-family: 'Lato', sans-serif;
-    font-weight: 400;
+	font-weight: 400;
 	-webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none;
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
 	font-size:1.2vw;
 }
 
@@ -38,10 +38,6 @@ button:hover {
 
 button:disabled {
 	pointer-events: none;
-}
-
-a {
-	color: black; 
 }
 
 h1 {
@@ -1155,6 +1151,7 @@ progress::-moz-progress-bar {
 		$("#use_forage").attr('disabled','disabled');
 		$("#money").html(money+'g');
 		if(game_finished == 2) {
+			$(settings).append('<br><button onclick="support()">Support</button><br><div id="contact"><button onclick="contact()">Contact</button></div>');
 			campsite();
 		} else {
 			return_to_farm();
@@ -3143,7 +3140,7 @@ progress::-moz-progress-bar {
 			$(display).html("Recalling Li-fen's words that the Amber Amulet protects against unnatural danger, I pass through the flames, unharmed.<br><br>");
 			$(display).append('"How interesting..." the Skeletal Demon rasps. The fire around me disappears. "Now... You must die!" The Skeletal Demon rushes towards me!<br><br>');
 			$(actions).html("<button onclick='attack_skeleton()'>Attack</button><br>");
-			$('.lantern_item').html("Lantern <button onclick='throw_lantern()'>Throw</button>");
+			$('.lantern_item').html("Lantern <button style='color:red;' onclick='throw_lantern()'><strong>Throw</strong></button>");
 		} else {
 			$(display).html('I approach the fire. The wall of flames becomes hotter and singes me. Ouch!<br><br>');
 			updateStamina(-10);
@@ -3159,7 +3156,7 @@ progress::-moz-progress-bar {
 		if ((guess == "dream") || (guess == "dreams") || (guess == "Dream") || (guess == "Dreams")) {
 			$(display).append('"The fire vanishes completely. "Very good..." the Skeletal Demon rasps. "Now... You must die!" The Skeletal Demon rushes towards me!<br><br>');
 			$(actions).html("<button onclick='attack_skeleton()'>Attack</button><br>");
-			$('.lantern_item').html("Lantern <button style='color:red;border-color:red;' onclick='throw_lantern()'>Throw</button>");
+			$('.lantern_item').html("Lantern <button style='color:red;' onclick='throw_lantern()'><strong>Throw</strong></button>");
 		} else {
 			clue += 1;
 			$(display).append('"Wrong!" The Skeletal Demon rasps and laughs. The circle of fire closes in...');
@@ -5312,8 +5309,16 @@ progress::-moz-progress-bar {
 		$(actions).html('<button onclick="landing_page()">Main Menu</button>');
 		game_finished = 2;
 		save_game();
+		$(settings).append('<br><button onclick="support()">Support</button><br><div id="contact"><button onclick="contact()">Contact</button></div>');
 	}
 
+	function contact() {
+		$("#contact").html("&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;");
+	}
+	
+	function support() {
+		window.open("https://buy.stripe.com/test_14k4hq35HeyFbCw9AA");
+	}
 	
 	function tax_collector(text) {
 		var previous = $(display).html();
@@ -6846,7 +6851,7 @@ progress::-moz-progress-bar {
 		$(display_persist).append("<i>Art and Music by Jane</i><br>");
 		$(display_persist).append("<i>Dedicated to our wonderful girls!<br>");
 		$(display_persist).append("<i>Copyright &copy; 2024<br><br>");
-		$(display_persist).append('<div><i>The Traveler&#39;s Ballad is a passion project. If you want to share feedback or report any bugs, we would love to hear from you! Please contact us at &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;. If you wish to <a href="https://buy.stripe.com/test_14k4hq35HeyFbCw9AA" >support us</a>, we would be deeply honored!</i><br><br>');
+		$(display_persist).append('<div><i>The Traveler&#39;s Ballad is a passion project. If you want to share feedback or report any bugs, we would love to hear from you! Please contact us at &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;. If you wish to </i><button onclick="support()">support</button><i> us, we would be deeply honored!</i><br><br>');
 		$(actions).html("<button onclick='hamlet()'>Go Back Outside</button>");
 		$(artwork).empty();
 	}
