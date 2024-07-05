@@ -215,9 +215,9 @@ progress::-moz-progress-bar {
 		<br>
 		<div id="collapse_settings">Settings <button onclick="collapse_settings()">VISIBLE</button></div>
 		<div id="settings">
-			<div id="music">Music: <button onclick="stop_music()">OFF</button></div>
-			<div id="notify">Notification: <button onclick="notifications_off()">OFF</button></div>
-			<div id="history">History: <button onclick="history_off()">OFF</button></div>
+			<div id="music">Music: <button onclick="stop_music()">ON</button></div>
+			<div id="notify">Notification: <button onclick="notifications_off()">ON</button></div>
+			<div id="history">History: <button onclick="history_off()">ON</button></div>
 			<button onclick="location.reload()">QUIT</button>
 		</div>
 	</div>
@@ -545,34 +545,34 @@ progress::-moz-progress-bar {
 	
 	function play_music() {
 		background_music.play();
-		$("#music").html("Music: <button onclick='stop_music()'>OFF</button>");
+		$("#music").html("Music: <button onclick='stop_music()'>ON</button>");
 		music = 1;
 	}
 	
 	function stop_music() {
 		background_music.pause();
-		$("#music").html("Music: <button onclick='play_music()'>ON</button>");
+		$("#music").html("Music: <button onclick='play_music()'>OFF</button>");
 		music = 0;
 	}
 	
 	function notifications_on() {
 		alerts = 1;
-		$("#notify").html("Notification: <button onclick='notifications_off()'>OFF</button>");
+		$("#notify").html("Notification: <button onclick='notifications_off()'>ON</button>");
 	}
 	
 	function notifications_off() {
 		alerts = 0;
-		$("#notify").html("Notification: <button onclick='notifications_on()'>ON</button>");
+		$("#notify").html("Notification: <button onclick='notifications_on()'>OFF</button>");
 	}
 	
 	function history_on() {
 		$(display_last).show();
-		$("#history").html("Dialogue History: <button onclick='history_off()'>OFF</button>");
+		$("#history").html("Dialogue History: <button onclick='history_off()'>ON</button>");
 	}
 	
 	function history_off() {
 		$(display_last).hide();
-		$("#history").html("Dialogue History: <button onclick='history_on()'>ON</button>");
+		$("#history").html("Dialogue History: <button onclick='history_on()'>OFF</button>");
 	}
 	
 	function select_inventory(text) {
