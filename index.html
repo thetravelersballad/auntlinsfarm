@@ -5315,10 +5315,6 @@ progress::-moz-progress-bar {
 	function contact() {
 		$("#contact").html("&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;");
 	}
-
-	function email_button() {
-		$("#feedback").html("<i>The Traveler's Ballad is a passion project. If you want to share feedback or report any bugs, please email us at &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;! If you wish to </i><button onclick='support()'>support us</button><i>, we would be deeply honored!</i><br><br>");
-	}
 	
 	function support() {
 		window.open("https://buy.stripe.com/test_14k4hq35HeyFbCw9AA");
@@ -6855,7 +6851,7 @@ progress::-moz-progress-bar {
 		$(display_persist).append("<i>Art and Music by Jane</i><br>");
 		$(display_persist).append("<i>Dedicated to our wonderful girls!<br>");
 		$(display_persist).append("<i>Copyright &copy; 2024<br><br>");
-		$(display_persist).append("<div id='feedback'><i>The Traveler's Ballad is a passion project. If you want to share feedback or report any bugs, please </i><button onclick='email_button()'>email</button><i> us! If you wish to </i><button onclick='support()'>support</button><i> us, we would be deeply honored!</i><br><br>");
+		$(display_persist).append("<div id='feedback'><i>The Traveler's Ballad is a passion project. If you want to share feedback or report any bugs, please email us at </i>&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;<i>! If you wish to </i><button onclick='support()'>support us</button><i>, we would be deeply honored!</i><br><br>");
 		$(actions).html("<button onclick='hamlet()'>Go Back Outside</button>");
 		$(artwork).empty();
 	}
