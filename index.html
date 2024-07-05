@@ -7798,20 +7798,7 @@ progress::-moz-progress-bar {
 			$(display).append('Mr. Gao seems taken aback for a moment. Then he signs heavily. "Yes, yes, of course. If you are asking about Gao Ru-yi, there must have a good reason. Despite what he may have done, I urge you not to judge him too quickly..."<br><br>');
 			$("#n_gao").html("<div id='n_gao2'><button onclick='n_gao2()'>Where is he?</button></div>");
 			$("#n_gao").append("<div id='n_gao3'><button onclick='n_gao3()'>How can you defend him?</button></div>");
-			$(actions).append("<div id='shady_business'><button onclick='business()'>Business?</button></div>");
 		}
-		if(invest_day) {
-			$(actions).append("<div id='invest'><button onclick='cashout()'>Cash Out Investment</button></div>");
-		} else {
-			$(actions).append("<div id='invest'><button onclick='invest()'>Invest with Mr. Gao</button></div>");
-		}
-		if(loan_day) {
-			$(actions).append("<div id='loan'><button onclick='repay()'>Repay Loan</button></div>");
-		} else {
-			$(actions).append("<div id='loan'><button onclick='loan()'>Take Out a Loan</button></div>");
-		}
-		$(actions).append("<div id='mrgao'><button onclick='mrgao()'>Tell me about Aunt Lin.</button></div>");
-		$(actions).append("<button onclick='hamlet()'>Go Back Outside</button>");
 	}
 
 	function n_gao2() {
@@ -9158,7 +9145,7 @@ progress::-moz-progress-bar {
 		var previous = $(display).html();
 		$(display_last).html(previous);
 		$(display).html('What is the Great Spirit Hall used for? I inquire of Monk Qin.<br>');
-		$(display).append('"The Great Spirit Hall has one main purpose," Monk Qin says, "And that is to house two large portals: one that connects to the Spirit Realm and the other... to the Demon Realm. As for the origin of these two protals and why they are kept here in the Great Spirit Hall by the monks of the Peach Garden Temple, I cannot unfortunately cannot share that information with you since you are not a disciple. However, all of the monks here are tasked with the vital responsibility of making sure that these portals remain sealed, both to and from the Mortal Realm. Failure to maintain this responsibility would be disastrous and could damage the very fabric of our world."<br><br> As he says this, the chanting from within the Great Spirit Hall grows louder. "Come," Monk Qin says, with an uneasy glance at the heavy doors. "We should move on." <br><br>');
+		$(display).append('"The Great Spirit Hall has one main purpose," Monk Qin says, "And that is to house two large portals: one that connects to the Spirit Realm and the other... to the Demon Realm. As for the origin of these two portals and why they are kept here in the Great Spirit Hall by the monks of the Peach Garden Temple, I unfortunately cannot share that information with you since you are not a disciple. However, all of the monks here are tasked with the vital responsibility of making sure that these portals remain sealed, both to and from the Mortal Realm. Failure to maintain this responsibility would be disastrous and could damage the very fabric of our world."<br><br> As he says this, the chanting from within the Great Spirit Hall grows louder. "Come," Monk Qin says, with an uneasy glance at the heavy doors. "We should move on." <br><br>');
 		$(actions).html("<button onclick='temple_tour4()'>Continue Tour</button><br>");
 		$(actions).append("<button onclick='hamlet()'>End Tour</button>");
 	}
