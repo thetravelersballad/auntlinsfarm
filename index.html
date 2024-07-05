@@ -1151,7 +1151,7 @@ progress::-moz-progress-bar {
 		$("#use_forage").attr('disabled','disabled');
 		$("#money").html(money+'g');
 		if(game_finished == 2) {
-			$(settings).append('<br><button onclick="support()">Support</button><br><div id="contact"><button onclick="contact()">Contact</button></div>');
+			$(settings).append('<br><button onclick="support()">SUPPORT</button><br><div id="contact"><button onclick="contact()">CONTACT</button></div>');
 			campsite();
 		} else {
 			return_to_farm();
@@ -5306,7 +5306,7 @@ progress::-moz-progress-bar {
 		} else if (feather_color == "Black") {
 			$(display).html('the black feathers of her tail sparking like obsidian in the soft light of an auspicious, autumn morning... <strong>The game has saved.</strong><br><br><strong>TO BE CONTINUED.</strong><br><br>');
 		}
-		$(actions).html('<button onclick="landing_page()">Main Menu</button>');
+		$(actions).html('<button onclick="location.reload()">Main Menu</button>');
 		game_finished = 2;
 		save_game();
 		$(settings).append('<br><button onclick="support()">Support</button><br><div id="contact"><button onclick="contact()">Contact</button></div>');
@@ -5314,6 +5314,10 @@ progress::-moz-progress-bar {
 
 	function contact() {
 		$("#contact").html("&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;");
+	}
+
+	function email_button() {
+		$("#feedback").html("<i>The Traveler's Ballad is a passion project. If you want to share feedback or report any bugs, please email us at &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;! If you wish to </i><button onclick='support()'>support us</button><i>, we would be deeply honored!</i><br><br>");
 	}
 	
 	function support() {
@@ -6851,7 +6855,7 @@ progress::-moz-progress-bar {
 		$(display_persist).append("<i>Art and Music by Jane</i><br>");
 		$(display_persist).append("<i>Dedicated to our wonderful girls!<br>");
 		$(display_persist).append("<i>Copyright &copy; 2024<br><br>");
-		$(display_persist).append('<div><i>The Traveler&#39;s Ballad is a passion project. If you want to share feedback or report any bugs, we would love to hear from you! Please contact us at &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#116;&#104;&#101;&#116;&#114;&#097;&#118;&#101;&#108;&#101;&#114;&#115;&#098;&#097;&#108;&#108;&#097;&#100;&#046;&#099;&#111;&#109;. If you wish to </i><button onclick="support()">support</button><i> us, we would be deeply honored!</i><br><br>');
+		$(display_persist).append("<div id='feedback'><i>The Traveler's Ballad is a passion project. If you want to share feedback or report any bugs, please </i><button onclick='email_button()'>email us</button><i>! If you wish to </i><button onclick="support()">support us</button><i>, we would be deeply honored!</i><br><br>');
 		$(actions).html("<button onclick='hamlet()'>Go Back Outside</button>");
 		$(artwork).empty();
 	}
