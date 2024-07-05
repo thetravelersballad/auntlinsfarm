@@ -1076,9 +1076,9 @@ progress::-moz-progress-bar {
 		game_finished = JSON.parse(localStorage.getItem("game_finished"));
 		if(game_saved) {
 			if(game_finished == 2) {
-				$(game_title).html("<h1>The TRAVELER's BALLAD</h1><button onclick='continue_game()'>Travel to Imperial Road</button><br><button onclick='game_start()'>Revisit Aunt Lin's Farm</button>");
+				$(game_title).html("<h1>The TRAVELER's BALLAD</h1><button onclick='continue_game()'>Return to Imperial Road</button><br><button onclick='game_start()'>Start Over</button>");
 			} else {
-				$(game_title).html("<h1>The TRAVELER's BALLAD</h1><button onclick='continue_game()'>Travel to Aunt Lin's Farm</button><br><button onclick='game_start()'>Revisit Aunt Lin's Farm</button>");
+				$(game_title).html("<h1>The TRAVELER's BALLAD</h1><button onclick='continue_game()'>Return to Aunt Lin's Farm</button><br><button onclick='game_start()'>Start Over</button>");
 			}
 		} else {
 			$(game_title).html("<h1>The TRAVELER's BALLAD</h1><button onclick='game_start()'>Travel to Aunt Lin's Farm</button><br>");
@@ -7527,7 +7527,15 @@ progress::-moz-progress-bar {
 		reset_display();
 		$(display_persist).html('Time passes slowly. Eventually, Mr. Gao, a short man with a scholarly look, appears.<br>');
 		$(display_persist).append('"I apologize to have kept you waiting," he says in a rich voice. "What sort of business can I help you with today? An investment, or perhaps a loan?" <br><br>');
-		$(actions).html("<div id='shady_business'><button onclick='business()'>Business?</button></div>");
+		$(actions).html("");
+		if(met_nephew || theft_solved) {
+			if(theft_solved) {
+				$(actions).append("<div id='n_gao'><button onclick='n_gao(2)'>Tell me about Gao Ru-yi.</button></div>");
+			} else {
+				$(actions).append("<div id='n_gao'><button onclick='n_gao(1)'>Do you have a nephew?</button></div>");
+			}
+		}
+		$(actions).append("<div id='shady_business'><button onclick='business()'>Business?</button></div>");
 		if(invest_day) {
 			$(actions).append("<div id='invest'><button onclick='cashout(1)'>How is my investment doing?</button></div>");
 		} else {
@@ -7546,13 +7554,6 @@ progress::-moz-progress-bar {
 					$("#erase_bankruptcy_button").attr('disabled','disabled');
 			}
 		}
-		if(met_nephew || theft_solved) {
-			if(theft_solved) {
-				$(actions).append("<div id='n_gao'><button onclick='n_gao(2)'>Tell me about Gao Ru-yi.</button></div>");
-			} else {
-				$(actions).append("<div id='n_gao'><button onclick='n_gao(1)'>Do you have a nephew?</button></div>");
-			}
-		}
 		$(actions).append("<div id='mrgao'><button onclick='mrgao()'>Tell me about Aunt Lin.</button></div>");
 		$(actions).append("<button onclick='hamlet()'>Go Back Outside</button>");
 		$(artwork).html(gao_art);	
@@ -7567,7 +7568,15 @@ progress::-moz-progress-bar {
 		updateTime(.25);
 		reset_display();
 		$(display_persist).append('Mr. Gao appears as soon as the servant leads me inside. "Great work defeating the demons," Mr Gao says, "Business is booming again! How may I serve you today?" <br><br>');
-		$(actions).html("<button onclick='business()'>Business?</button><br>");
+		$(actions).html("");
+		if(met_nephew || theft_solved) {
+			if(theft_solved) {
+				$(actions).append("<div id='n_gao'><button onclick='n_gao(2)'>Tell me about Gao Ru-yi.</button></div>");
+			} else {
+				$(actions).append("<div id='n_gao'><button onclick='n_gao(1)'>Do you have a nephew?</button></div>");
+			}
+		}
+		$(actions).append("<button onclick='business()'>Business?</button><br>");
 		if(invest_day) {
 			$(actions).append("<div id='invest'><button onclick='cashout(1)'>How is my investment doing?</button></div>");
 		} else {
@@ -7582,13 +7591,6 @@ progress::-moz-progress-bar {
 			$(actions).append("<div id='erase_bankruptcy'><button id='erase_bankruptcy_button' onclick='erase_bankruptcy()'>Erase Bankruptcy Record (30g)</button></div>");
 			if(money < 30) {
 				$("#erase_bankruptcy_button").attr('disabled','disabled');
-			}
-		}
-		if(met_nephew || take_sculpture) {
-			if(theft_solved) {
-				$(actions).append("<div id='n_gao'><button onclick='n_gao(2)'>Tell me about Gao Ru-yi.</button></div>");
-			} else {
-				$(actions).append("<div id='n_gao'><button onclick='n_gao(1)'>Do you have a nephew?</button></div>");
 			}
 		}
 		$(actions).append("<button onclick='hamlet()'>Go Back Outside</button>");
