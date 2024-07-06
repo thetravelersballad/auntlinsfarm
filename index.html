@@ -17,6 +17,7 @@ body{
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 	font-size:1.2vw;
+	font-color: black;
 }
 
 button {
@@ -6084,7 +6085,9 @@ progress::-moz-progress-bar {
 			$("#sell_mushroom").html("<button onclick=sell_mushroom(2)>Sell Red Mushroom for 20g</button>");
 		} else if(text == 2) {
 			$(display).html('<strong>I sell the Red Mushroom to Ms. Ming for 20g!</strong><br><br>');
+			$(".redmushroom_item").remove();
 			inventory_map.delete("redmushroom_item f_item");
+			$("#sell_mushroom").remove();
 			money += 20;
 			$("#money").html(money+"g");
 		} else {
@@ -6625,10 +6628,10 @@ progress::-moz-progress-bar {
 				$(actions).append("<div id='find_herbs'><button onclick='find_herbs()'>Can you teach me to find herbs?</button></div>");
 			}
 			if(inventory_map.get("redmushroom_item f_item")) {
-				$(actions).append("<div id='investigate_redmushroom'><button onclick='investigate_mushroom(1)'>Is this red mushroom edible?</button></div>");
+				$(actions).append("<div id='investigate_redmushroom'><button onclick='investigate_mushroom(1)'>Is this Red Mushroom edible?</button></div>");
 			}
 			if(inventory_map.get("whitemushroom_item f_item")) {
-				$(actions).append("<div id='investigate_whitemushroom'><button onclick='investigate_mushroom(2)'>Is this white mushroom edible?</button></div>");
+				$(actions).append("<div id='investigate_whitemushroom'><button onclick='investigate_mushroom(2)'>Is this White Mushroom edible?</button></div>");
 			}
 			$(actions).html("<button onclick='show_stats()'>Request Palm Reading</button><br>");
 			$(actions).append("<button onclick='hamlet()'>Go Back Outside</button>");
@@ -9754,10 +9757,10 @@ progress::-moz-progress-bar {
 			$(actions).append("<div id='find_herbs'><button onclick='find_herbs()'>How to do I find herbs?</button></div>");
 		}
 		if(inventory_map.get("redmushroom_item f_item")) {
-			$(actions).append("<div id='investigate_redmushroom'><button onclick='investigate_mushroom(1)'>Is this red mushroom edible?</button></div>");
+			$(actions).append("<div id='investigate_redmushroom'><button onclick='investigate_mushroom(1)'>Is this Red Mushroom edible?</button></div>");
 		}
 		if(inventory_map.get("whitemushroom_item f_item")) {
-			$(actions).append("<div id='investigate_whitemushroom'><button onclick='investigate_mushroom(2)'>Is this white mushroom edible?</button></div>");
+			$(actions).append("<div id='investigate_whitemushroom'><button onclick='investigate_mushroom(2)'>Is this White Mushroom edible?</button></div>");
 		}
 		if(inventory_map.get("gatewayscroll_item q_item") && !inventory_map.get("portalspell_item q_item")) {
 			$(actions).append("<div id='translated_manual'><button onclick='yang_manual()'>Can you translate this scroll?</button></div>");
