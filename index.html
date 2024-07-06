@@ -17,7 +17,6 @@ body{
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 	font-size:1.2vw;
-	font-color: black;
 }
 
 button {
@@ -30,7 +29,7 @@ button {
 	padding: 5px;
 	text-align: center;
 	font-size: 1.2vw;
-	font-color: black;
+	color: black;
 }
 
 button:hover {
@@ -3098,7 +3097,11 @@ progress::-moz-progress-bar {
 	function level_two() {
 		updateStamina(-1.5);
 		reset_display();
-		$(display_persist).html('I head past the altar and up the stairs to the hallway leading to the monks&#39; quarters. As I walk down the narrow corrider, a wall of fire rises in front of me. Unnatural flames run down the walls on both sides of me, encircling me... Through the flickering flames, I catch a glimpse of a skeletal creature made of ghostly white bones...<br><br>');
+		if(completed_tour) {
+			$(display_persist).html('I head past the altar and up the stairs to the hallway leading to the monks&#39; quarters. As I walk down the narrow corrider, a wall of fire rises in front of me. Unnatural flames run down the walls on both sides of me, encircling me... Through the flickering flames, I catch a glimpse of a skeletal creature made of ghostly white bones...<br><br>');
+		} else {
+			$(display_persist).html('I head past the altar and up the stairs to a long hallway with a series of rooms on each side. As I walk down the narrow corrider, a wall of fire rises in front of me. Unnatural flames run down the walls on both sides of me, encircling me... Through the flickering flames, I catch a glimpse of a skeletal creature made of ghostly white bones...<br><br>');
+		}
 		$(display_persist).append('The raspy voice of the Skeletal Demon calls out to me, "I am sought after by many, each with their own desires and expectations of what I can give them. The rich and powerful open their homes up to me as willingly as the common folks do, but few remember my visit after I depart. When the sun is up, I can be a pleasant companion, but at night, I terrify my victims. Tell me... What am I?<br><br>');
 		$(actions).html("<button onclick='flames()'>Pass Through Flames</button>");
 		$(actions).append("<div id='riddle'><input type='text' id='my_guess' placeholder='demon'></input><button onclick='riddle()'>Answer Riddle</button></div>");
@@ -9028,7 +9031,7 @@ progress::-moz-progress-bar {
 		$(display_last).html(previous);
 		$(artwork).html('');
 		$(display).html('Monk Qin bows. "Please follow me," he says.<br><br>');
-		$(display).append('I follow Monk Qin up a flight of stairs to a balcony overlooking the altar. Monk Qin leads me around the balcony and through a door that leads into a long hallway with series of rooms on each side. "These are the monk&#39;s private quarters," Monk Qin says. Inside an open room, I see a monk studying at his desk. Noticing us, he gets up and bows before politely closing his door.<br><br>');
+		$(display).append('I follow Monk Qin up a flight of stairs to a balcony overlooking the altar. Monk Qin leads me around the balcony and through a door that leads into a long hallway with a series of rooms on each side. "These are the monk&#39;s private quarters," Monk Qin says. Inside an open room, I see a monk studying at his desk. Noticing us, he gets up and bows before politely closing his door.<br><br>');
 		$(actions).html("<button onclick='temple_tour3()'>Continue Tour</button><br>");
 		$(actions).append("<button onclick='hamlet()'>End Tour</button>");
 	}
@@ -9713,7 +9716,7 @@ progress::-moz-progress-bar {
 		$("#use_rocksmash").attr('disabled','disabled');
 		if(game_finished) {
 			$(display_persist).html('Howling Woods leads straight to a waterfall at the foot of Crane Cloud Mountains. Behind the waterfall, there is a cave...<br><br>');
-			$(actions).html("<button onclick='treasure_cave()'>Enter Cave of Treasures</button><br>");	
+			$(actions).html("<button onclick='treasure_cave()'>Enter Cave</button><br>");	
 			$(actions).append("<button onclick='hamlet()'>Return to Peaceful Weather Hamlet</button>");
 			$(artwork).html("");
 		} else {
@@ -9852,13 +9855,16 @@ progress::-moz-progress-bar {
 					$(display).append(' Just a couple of wildflowers around here.<br><br>');
 				}
 			}
-			if(!game_finished) {
+			if(game_finished) {
+				$(actions).html("<button onclick='treasure_cave()'>Enter Cave</button><br>");	
+				$(actions).append("<button onclick='hamlet()'>Return to Peaceful Weather Hamlet</button>");
+			}else {
 				$(actions).html("<button id='master_yang' onclick='master_yang()'>Approach Master Yang</button><br>");
+				if (waterfall) {
+					$(actions).append("<button onclick='treasure_cave()'>Enter Cave of Treasures</button><br>");
+				}
+				$(actions).append("<button onclick='hamlet()'>Return to Peaceful Weather Hamlet</button>");
 			}
-			if (waterfall) {
-				$(actions).append("<button onclick='treasure_cave()'>Enter Cave of Treasures</button><br>");
-			}
-			$(actions).append("<button onclick='hamlet()'>Return to Peaceful Weather Hamlet</button>");
 		}
 	}
 	
@@ -10281,7 +10287,11 @@ progress::-moz-progress-bar {
 		var previous = $(display).html();
 		$(display_last).html(previous);
 		if(treasure) {
-			$(display).html("I carefully open the treasure chest. A faint dust cloud floats upwards and out of the cave, followed by a soft noise, almost like a grateful whisper. <i>Xiexie...</i> Could that have really been the spirit of Bandit Chief Jin?<br><br>The treasure chest is filled with coins. On top of the piles of coins lies a dagger made of silver. <strong>Obtained 200g! Obtained Silver Dagger!</strong><br><br>");
+			if(waterfall) {
+				$(display).html("I carefully open the treasure chest. A faint dust cloud floats upwards and out of the cave, followed by a soft noise, almost like a grateful whisper&mdash;<i>xiexie...</i> Could that have really been the spirit of Bandit Chief Jin?<br><br>The treasure chest is filled with coins. On top of the piles of coins lies a dagger made of silver. <strong>Obtained 200g! Obtained Silver Dagger!</strong><br><br>");
+			} else {
+				$(display).html("I carefully open the treasure chest. A faint dust cloud floats upwards and out of the cave, followed by a soft noise, almost like a grateful whisper&mdash;<i>xiexie...</i> How strange! On top of the piles of coins lies a dagger made of silver. <strong>Obtained 200g! Obtained Silver Dagger!</strong><br><br>");
+			}
 			money += 200;
 			$("#money").html(money+"g");
 			addToInventory("silverdagger_item e_item q_item","Silver Dagger (<i>relic</i>) <button  id='silverdagger_button' onclick='equip(11)'>Equip</button>");
