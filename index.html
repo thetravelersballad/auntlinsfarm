@@ -1037,19 +1037,7 @@ progress::-moz-progress-bar {
 		clue = JSON.parse(localStorage.getItem("clue"));
 
 		//boss fight
-		lod_flying = JSON.parse(localStorage.getItem("lod_flying"));
-		lod_immune = JSON.parse(localStorage.getItem("lod_immune"));
-		lod_attacking = JSON.parse(localStorage.getItem("lod_attacking"));
-		lod_attacking_qin = JSON.parse(localStorage.getItem("lod_attacking_qin"));
-		imp_casting = JSON.parse(localStorage.getItem("imp_casting"));
-		imp_immune = JSON.parse(localStorage.getItem("imp_immune"));
-		imp_attacking = JSON.parse(localStorage.getItem("imp_attacking"));
-		imp_attacking_qin = JSON.parse(localStorage.getItem("imp_attacking_qin"));
-		imp_spell_disrupt = JSON.parse(localStorage.getItem("imp_spell_disrupt"));
-		imp_defeated = JSON.parse(localStorage.getItem("imp_defeated"));
-		qin_defeated = JSON.parse(localStorage.getItem("qin_defeated"));
 		qin_fallen = JSON.parse(localStorage.getItem("qin_fallen"));
-		battle_over = JSON.parse(localStorage.getItem("battle_over"));
 
 		//epilogue
 		egg = JSON.parse(localStorage.getItem("egg"));
@@ -1315,19 +1303,7 @@ progress::-moz-progress-bar {
 		localStorage.setItem("fight_imp", JSON.stringify(fight_imp));
 		localStorage.setItem("dispel_illusion", JSON.stringify(dispel_illusion));
 		localStorage.setItem("clue", JSON.stringify(clue));
-		localStorage.setItem("lod_flying", JSON.stringify(lod_flying));
-		localStorage.setItem("lod_immune", JSON.stringify(lod_immune));
-		localStorage.setItem("lod_attacking", JSON.stringify(lod_attacking));
-		localStorage.setItem("lod_attacking_qin", JSON.stringify(lod_attacking_qin));
-		localStorage.setItem("imp_casting", JSON.stringify(imp_casting));
-		localStorage.setItem("imp_immune", JSON.stringify(imp_immune));
-		localStorage.setItem("imp_attacking", JSON.stringify(imp_attacking));
-		localStorage.setItem("imp_attacking_qin", JSON.stringify(imp_attacking_qin));
-		localStorage.setItem("imp_spell_disrupt", JSON.stringify(imp_spell_disrupt));
-		localStorage.setItem("imp_defeated", JSON.stringify(imp_defeated));
-		localStorage.setItem("qin_defeated", JSON.stringify(qin_defeated));
 		localStorage.setItem("qin_fallen", JSON.stringify(qin_fallen));
-		localStorage.setItem("battle_over", JSON.stringify(battle_over));
 		localStorage.setItem("egg", JSON.stringify(egg));
 		localStorage.setItem("leather_boots", JSON.stringify(leather_boots));
 		localStorage.setItem("scallion_crepes", JSON.stringify(scallion_crepes));
@@ -1819,7 +1795,7 @@ progress::-moz-progress-bar {
 		if(newStamina <= 20 && alerts && !stamina_alert){
 			$(game_title).show();
 			dismiss_alert = 1;
-			$(game_title).html('My stamina is low! <button id="notice_time" onclick="dismiss()">Dismiss (10)</button>');
+			$(game_title).html('My stamina is low! <button id="notice_time" onclick="dismiss()">Dismiss (10)</button><br><button onclick="rest()">Go Home and Sleep</button>');
 			notice_timer = 9;
 			auto_dismiss();
 			stamina_alert = 1;
@@ -3348,8 +3324,8 @@ progress::-moz-progress-bar {
 		var val = $("#lod_hp").val();
 		val += text;
 		if(val <= 0) {
-			beat_lod();
 			battle_over = 1;
+			beat_lod();
 		}
 		$("#lod_hp").val(val);
 	}
@@ -3848,10 +3824,6 @@ progress::-moz-progress-bar {
 	}
 
 	function take_painting() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -3870,10 +3842,6 @@ progress::-moz-progress-bar {
 	}
 
 	function hang_painting() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -3897,10 +3865,6 @@ progress::-moz-progress-bar {
 	}
 
 	function inspect_bed() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -3914,10 +3878,6 @@ progress::-moz-progress-bar {
 	}
 
 	function move_bed() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4010,10 +3970,6 @@ progress::-moz-progress-bar {
 	}
 	
 	function open_trapdoor() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4028,10 +3984,6 @@ progress::-moz-progress-bar {
 
 	function cellar() {
 		if(future_present) {
-			var collapse = updateStamina(-1.5);
-			if(collapse){
-				return;
-			}
 			updateTime(.25);
 			change_music("cave.mp3");
 			reset_display();		
@@ -4065,40 +4017,24 @@ progress::-moz-progress-bar {
 			$(display_persist).html("The cellar swirls with brilliant patterns of light emitting from the activated Time Portal.<br><br>");
 			$(actions).html("<button onclick='enter_portal()'>Enter Time Portal</button><br>");
 		} else if(!inventory_map.get("lantern_item t_item")) {
-			var collapse = updateStamina(-1.5);
-			if(collapse){
-				return;
-			}
 			updateTime(.25);
 			change_music("cave.mp3");
 			reset_display();
 			$(display_persist).html('The cellar is dark and musty. In the center of the room is a large structure covered in shadows. It feels to be made of some kind of smooth stone. Placing my hand on the structure in the dark, I am reminded of the parable about the blind men and the elephant." <strong>Better go find some light.</strong><br><br>');
 			$(actions).html("");
 		} else if(inventory_map.get("portalspell_item q_item")) {
-			var collapse = updateStamina(-1.5);
-			if(collapse){
-				return;
-			}
 			updateTime(.25);
 			change_music("cave.mp3");
 			reset_display();
 			$(display_persist).html("The cellar is dark and musty. I light the lantern.<br><br>In the center of the room stands a large gateway made entirely of marble. The gateway is big enough for a person to pass through. There are strange glyphs carved into its sides...<br><br>");
 			$(actions).html("<div id='incantation'><button onclick='incantation()'>Speak Incantation</button></div>");
 		} else if (inventory_map.get("gatewayscroll_item q_item")) {
-			var collapse = updateStamina(-1.5);
-			if(collapse){
-				return;
-			}
 			updateTime(.25);
 			change_music("cave.mp3");
 			reset_display();
 			$(display_persist).html("The cellar is dark and musty. I light the lantern.<br><br>In the center of the room stands a large gateway made entirely of marble. The gateway is big enough for a person to pass through. There are strange glyphs carved into its sides... I should work on getting the Gateway Scroll translated.<br><br>");
 			$(actions).html("");
 		} else {
-			var collapse = updateStamina(-1.5);
-			if(collapse){
-				return;
-			}
 			updateTime(.25);
 			change_music("cave.mp3");
 			reset_display();
@@ -4109,10 +4045,6 @@ progress::-moz-progress-bar {
 	}
 	
 	function cellar_c1() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4240,10 +4172,6 @@ progress::-moz-progress-bar {
 	}
 
 	function inspect_table() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4262,10 +4190,6 @@ progress::-moz-progress-bar {
 	}
 
 	function take_lantern() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4275,10 +4199,6 @@ progress::-moz-progress-bar {
 	}
 
 	function read_letter() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(1);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4287,10 +4207,6 @@ progress::-moz-progress-bar {
 	}
 
 	function read_receipt() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(1);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4299,10 +4215,6 @@ progress::-moz-progress-bar {
 	}
 
 	function inspect_stove() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -4312,10 +4224,6 @@ progress::-moz-progress-bar {
 	}
 	
 	function look_inside_pot() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
 		updateTime(.25);
 		var previous = $(display).html();
 		$(display_last).html(previous);
@@ -8300,11 +8208,9 @@ progress::-moz-progress-bar {
 	function press_offense() {
 		var previous = $(display).html();
 		$(display_last).html(previous);
-		$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 		$(display).html('I take an offensive stance and attack!<br><br>');
 		var offense = Math.random();
 		if (offense > match_balance) {
-			$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 			if(lifen_energy > 2) {
 				$(display).append("Li-fen parries my blow. Her step falters mometarily.<br><br>");
 				$(actions).html("<button onclick='continue_press_offense(1)'>Continue Pressure</button><br>");
@@ -8317,7 +8223,6 @@ progress::-moz-progress-bar {
 				$(actions).append("<button onclick='concede()'>Concede Match</button><br>");
 			}
 		} else {
-			$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 			$(display).append("Li-fen parries my blow and forces me on the defensive.<br><br>");
 			$(actions).html("<button onclick='parry()'>Parry</button><br>");
 			$(actions).append("<button onclick='dodge()'>Dodge</button><br><br>");
@@ -8392,7 +8297,6 @@ progress::-moz-progress-bar {
 	function press_defense() {
 		var previous = $(display).html();
 		$(display_last).html(previous);
-		$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 		$(display).html('I take a defensive stance. Show me what you got! I shout.<br>Li-fen attacks!<br><br>');
 		$(actions).html("<button onclick='parry()'>Parry</button><br>");
 		$(actions).append("<button onclick='dodge()'>Dodge</button><br><br>");
@@ -8402,7 +8306,6 @@ progress::-moz-progress-bar {
 	function parry() {
 		var previous = $(display).html();
 		$(display_last).html(previous);
-		$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 		$(display).html("I successfully parry Li-fen's blow.<br><br>");
 		$(actions).html("<button onclick='press_offense()'>Switch to Offense</button><br>");
 		$(actions).append("<button onclick='press_defense()'>Remain on Guard</button><br><br>");
@@ -8416,7 +8319,6 @@ progress::-moz-progress-bar {
 		var previous = $(display).html();
 		$(display_last).html(previous);
 		var defense = Math.random();
-		$("#lifen_hp").html("Li-fen<br><progress value='"+lifen_energy+"' max='5'></progress>");
 		if (defense > match_balance) {
 			$(display).html("I successfully dodge Li-fen's blow.<br><br>");
 			match_balance -= 0.1;
@@ -8433,7 +8335,7 @@ progress::-moz-progress-bar {
 
 	function stamina_check() {
 		var currentStamina = $(".stamina").val();
-		if (currentStamina < 20) {
+		if (currentStamina < 10) {
 			var previous = $(display).html();
 			$(display_last).html(previous);
 			$(display).html('Li-fen stops the match. "Hey, are you okay? You look out of breath. How about we call this one a draw. Go home and rest. We can have a rematch another day!"<br><br>');
