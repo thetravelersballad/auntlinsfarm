@@ -237,6 +237,7 @@ progress::-moz-progress-bar {
 	var weather;
 	var stamina;
 	var health_max;
+	var total_health;
 	var health_color;
 	var sleep_quality;
 	var exhaustion;
@@ -657,6 +658,7 @@ progress::-moz-progress-bar {
 		weather = ["sunny","sunny","mild"];
 		stamina = 100;
 		health_max = 100;
+		total_health = 100;
 		health_color = "dodgerblue";
 		$(".stamina").css("color", health_color);
 		sleep_quality = 3;
@@ -873,6 +875,7 @@ progress::-moz-progress-bar {
 		weather = JSON.parse(localStorage.getItem("weather"));
 		stamina = JSON.parse(localStorage.getItem("stamina"));
 		health_max = JSON.parse(localStorage.getItem("health_max"));
+		total_health = JSON.parse(localStorage.getItem("total_health"));
 		health_color = JSON.parse(localStorage.getItem("health_color"));
 		sleep_quality = JSON.parse(localStorage.getItem("sleep_quality"));
 		exhaustion = JSON.parse(localStorage.getItem("exhaustion"));
@@ -1115,7 +1118,7 @@ progress::-moz-progress-bar {
 		} else {
 			$("#hp").html("Healthiness: "+health_max+"%");
 		}
-		$('.stamina').attr('max', health_max);
+		$('.stamina').attr('max', total_health);
 		if(egg){
 			$("#phoenix_egg").html('<br>Phoenix Egg<br><progress id="egg_bar" value="5" max="5"></progress><div id="egg_hatch">Hatched: 1%</div>');
 			$("#egg_bar").css("color", "red");
@@ -1166,6 +1169,7 @@ progress::-moz-progress-bar {
 		localStorage.setItem("weather", JSON.stringify(weather));
 		localStorage.setItem("stamina", JSON.stringify(stamina));
 		localStorage.setItem("health_max", JSON.stringify(health_max));
+		localStorage.setItem("total_health", JSON.stringify(total_health));
 		localStorage.setItem("health_color", JSON.stringify(health_color));
 		localStorage.setItem("sleep_quality", JSON.stringify(sleep_quality));
 		localStorage.setItem("exhaustion", JSON.stringify(exhaustion));
@@ -1819,7 +1823,6 @@ progress::-moz-progress-bar {
 			if(health_max > 50) {
 				health_max -= 10;
 				$("#hp").html("Healthiness: "+health_max+"%");
-				$('.stamina').attr('max', health_max);
 			}
 			if(health_max > 100) {
 				health_color = "orange";
@@ -1844,7 +1847,6 @@ progress::-moz-progress-bar {
 			newStamina = health_max;
 		}
 		$(".stamina").val(newStamina);
-		$('.stamina').attr('max', health_max);
 		return false;
 	}
 	
@@ -3305,7 +3307,7 @@ progress::-moz-progress-bar {
 		$("#boss_fight_display").append("<div id='lord_of_demons'><div id='lod_status'>Lord of Demons (flying)</div><progress id='lod_hp' value='100' max='100'></progress><br><div id='lod_display'></div></div></div>");
 		$("#boss_fight_display").append("<div id='imp_demon'><div id='imp_status'>Imp Demon (vanished)</div><progress id='imp_hp' value='10' max='10'></progress><br><div id='imp_display'></div><br><br>");
 		var currentStamina = $(".stamina").val();
-		$("#boss_fight_display").append("<div id='hero'>"+name+"<br><progress class='stamina' value='"+currentStamina+"' max='"+health_max+"'></progress><div id='my_display'></div><div id='my_status'></div></div>");
+		$("#boss_fight_display").append("<div id='hero'>"+name+"<br><progress class='stamina' value='"+currentStamina+"' max='"+total_health+"'></progress><div id='my_display'></div><div id='my_status'></div></div>");
 		$(".stamina").css("color", health_color);
 		$("#boss_fight_display").append("<div id='monk_qin'>Monk Qin<br><progress id='qin_hp' value='40' max='100'></progress><div id='qin_display'></div><div id='qin_status'></div></div>");
 		$(actions).html("<button id='attack_lod' onclick='attack_lod()'>Attack Lord of Demons</button>");
@@ -3930,10 +3932,9 @@ progress::-moz-progress-bar {
 		} else {
 			$(display_persist).html("I sleep a dreamless sleep. I recover some stamina. ");
 		}
-		if (health_max <= 98) {
+		if (health_max <= (total_health - 2)) {
 			health_max += 2;
 			$("#hp").html("Healthiness: "+health_max+"%");
-			$(".stamina").attr('max', health_max);
 			$(display_persist).append("My overall health improves a bit.");
 		}
 		$(display_persist).append("<br><br><strong>The game has been saved.</strong><br><br>")
@@ -6563,7 +6564,6 @@ progress::-moz-progress-bar {
 			inventory_map.delete("whitemushroom_item f_item");
 			health_max -= 50;
 			$("#hp").html("Healthiness: "+health_max+"%");
-			$('.stamina').attr('max', health_max);
 		} else if (food == 6) {
 			scallion_crepes -= 1;
 			if (scallion_crepes) {
@@ -9164,8 +9164,9 @@ progress::-moz-progress-bar {
 	}
 
 	function eat_peach() {
+		total_health = 200;
 		health_max += 100;
-		$("#progress_bar").html('<progress class="stamina" value="'+(health_max)+'" max="'+(health_max)+'"></progress><div id="hp">Healthiness: '+health_max+'%</div>');
+		$("#progress_bar").html('<progress class="stamina" value="'+health_max+'" max="200"></progress><div id="hp">Healthiness: '+health_max+'%</div>');
 		health_color = "orange";
 		$(".stamina").css("color", health_color);
 		$(".sacredpeach_item").remove();
