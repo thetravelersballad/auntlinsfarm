@@ -2874,7 +2874,7 @@ progress::-moz-progress-bar {
 			equip(9);
 		} else if(steel_sword) {
 			equip(10);
-		} else if(silver_dagger && !silver_dagger_broken) {
+		} else if(silver_dagger) {
 			equip(11);
 		}
 		$(display_persist).html('I enter the Peach Garden Temple. The temple is empty and quiet. No signs of any demons yet...<br><br>');
@@ -3732,7 +3732,7 @@ progress::-moz-progress-bar {
 		reset_display();
 		$(display_persist).html('"Now!" Monk Qin yells. "Summon forth all of the yang spirit energy that makes up your character and finish off the Lord of Demon!<br><br>');
 		$(actions).html("<button onclick='strike_lod(1)'>Strike the Lord of Demons!</button>");
-		if (silver_dagger && !silver_dagger_broken) {
+		if (silver_dagger) {
 			$(actions).append("<button onclick='strike_lod(2)'>Strike the Lord of Demons with the Silver Dagger!</button>");
 		}
 		$(artwork).html(fight_art);
@@ -4188,7 +4188,6 @@ progress::-moz-progress-bar {
 		time_portal = 1;
 		if(text == 1) {
 			$(display).html("I speak the incantation while holding the Silver Dagger. <strong>The Silver Dagger shatters in my hand!</strong><br><br>Swirling ribbons of spirit energy begin to burst forth from the broken halves of the Silver Dagger. The energy collects in the center of the cellar, slowly forming into a ball. The Spirit Ball bounces curiously around the cellar as if having a mind of its own, before drifting into the gateway's hollow middle where it stretches into a portal filled with beautiful patterns of colors, shimmering like butterfly wings... <strong>The Time Portal has been activated!</strong><br><br>");
-			silver_dagger_broken = 1;
 			if(silver_dagger) {
 				unequip(11);
 			}
@@ -10177,7 +10176,7 @@ progress::-moz-progress-bar {
 		$("#use_rocksmash").removeAttr('disabled');
 		$(display_persist).html("<div id='spider_bar'>Spider<br><progress value='2' max='2'></progress></div><br>");
 		$(display).html("The spider makes a series of clicking noises as it advances towards me...<br><br>");
-		if (bronze_sword || steel_sword || (silver_dagger && !silver_dagger_broken) || wooden_staff) {
+		if (bronze_sword || steel_sword || (silver_dagger) || wooden_staff) {
 			$(actions).html("<button onclick='attack_spider()'>Attack</button><br>");
 			$(actions).append("<button onclick='scare()'>Yell</button><br>");
 		} else {
@@ -10239,7 +10238,7 @@ progress::-moz-progress-bar {
 			spider_hp -= 1;
 			venom_distance = .6
 			currentSword = "bronze sword";
-		} else if (silver_dagger && !silver_dagger_broken) {
+		} else if (silver_dagger) {
 			spider_hp -= .75;
 			venom_distance = .4
 			currentSword = "silver dagger";
@@ -10299,7 +10298,7 @@ progress::-moz-progress-bar {
 			return;
 		}
 		var confused = Math.random();
-		if (bronze_sword || steel_sword || (silver_dagger && !silver_dagger_broken) || wooden_staff) {
+		if (bronze_sword || steel_sword || (silver_dagger) || wooden_staff) {
 			if(confused > .5) {
 				attack_spider();
 			} else if(confused > .2) {
@@ -10351,7 +10350,7 @@ progress::-moz-progress-bar {
 				$(actions).html("<button onclick='disoriented()'>???</button><br>");
 			} else {
 				$(display).append("<br><br>");
-				if (bronze_sword || steel_sword || (silver_dagger && !silver_dagger_broken) || wooden_staff) {
+				if (bronze_sword || steel_sword || silver_dagger || wooden_staff) {
 					$(display).append("<br><br>");
 					$(actions).html("<button onclick='attack_spider()'>Attack</button><br>");
 					$(actions).append("<button onclick='scare()'>Yell</button><br>");
