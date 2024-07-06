@@ -29,7 +29,6 @@ button {
 	padding: 5px;
 	text-align: center;
 	font-size: 1.2vw;
-	color: black;
 }
 
 button:hover {
@@ -565,12 +564,12 @@ progress::-moz-progress-bar {
 	
 	function history_on() {
 		$(display_last).show();
-		$("#history").html("Dialogue History: <button onclick='history_off()'>ON</button>");
+		$("#history").html("History: <button onclick='history_off()'>ON</button>");
 	}
 	
 	function history_off() {
 		$(display_last).hide();
-		$("#history").html("Dialogue History: <button onclick='history_on()'>OFF</button>");
+		$("#history").html("History: <button onclick='history_on()'>OFF</button>");
 	}
 	
 	function select_inventory(text) {
