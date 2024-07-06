@@ -1120,8 +1120,6 @@ progress::-moz-progress-bar {
 		background_music.loop = true;
 		music = 1;
 		$("#sidePanel").show();
-		$("#time").html("Morning (<i>"+weather[0]+"</i>)");
-		$("#date").html("Day "+current_day+"<br>"+current_loc);
 		$(".stamina").val(stamina);
 		$(".stamina").css("color", health_color);
 		if(invincible > 0) {
@@ -1148,14 +1146,20 @@ progress::-moz-progress-bar {
 			$("#skills").html("None");
 		}
 		$("#use_rocksmash").attr('disabled','disabled');
-		$("#use_forage").attr('disabled','disabled');
 		$("#money").html(money+'g');
 		if(game_finished == 2) {
 			$(settings).append('<br><button onclick="support()">SUPPORT</button><br><div id="contact"><button onclick="contact()">CONTACT</button></div>');
-			campsite();
+			updateLocation("Soldier Camp");
+			time = 9;
+			$("#time").html("<strong>Night</strong> (<i>windy</i>)");
+			campsite2();
 		} else {
+			updateLocation("Aunt Lin's farm");
+			$("#time").html("Morning (<i>"+weather[0]+"</i>)");
+			$("#use_forage").attr('disabled','disabled');
 			return_to_farm();
 		}
+		$("#date").html("Day "+current_day+"<br>"+current_loc);
 	}
 
 	function save_game() {
@@ -4321,11 +4325,6 @@ progress::-moz-progress-bar {
 	}
 
 	function return_to_farm() {
-		var collapse = updateStamina(-1.5);
-		if(collapse){
-			return;
-		}
-		updateTime(.25);
 		updateLocation("Aunt Lin's farm");
 		change_music("farm.mp3");
 		reset_display();
@@ -4686,6 +4685,7 @@ progress::-moz-progress-bar {
 			$("#time").html("<strong>Night</strong> (<i>windy</i>)");
 			campsite2();
 		} else {
+			updateLocation("Soldier Camp");
 			reset_display();
 			$("#time").html("<strong>Night</strong> (<i>windy</i>)");
 			$(display_persist).html('We ride the rest of the day along the empty Imperial Road, as rain pours down... The rain lets up just before nightfall, summoning a cold wind to take its place. Captain Jin signals for us to make camp by the side of the Imperial Road so that we may dry off. The soldiers quickly get to work, first tending to their horses and then gathering kindling to start a fire...<br><br>Overhead, the nearly full moon shines brightly in the night sky.<br><br>');
@@ -7132,7 +7132,7 @@ progress::-moz-progress-bar {
 		if(rocksmash) {
 			$(display).html('"Appendix: Remember, punching rocks all day may bruise your knuckles. Eat lots of steamed buns to recover before trying again! Keep it up and one day you will become strong enough to smash even the biggest boulder with one punch. Hur-rah!" [SRF 5/5]<br><br>');
 		} else {
-			$(display).html('"Appendix: Remember, punching rocks all day may bruise your knuckles. Eat lots of steamed buns to recover before trying again! Keep it up and one day you will become strong enough to smash even the biggest boulder with one punch. Hur-rah!" [SRF 5/5] I have learned Quan the Mighty&#39;s technique for smashing rocks with my bare fist! But could it really be that simple? I wonder if I should test it out... <strong>I acquired a new Skill!</strong><br><br>');
+			$(display).html('"Appendix: Remember, punching rocks all day may bruise your knuckles. Eat lots of steamed buns to recover before trying again! Keep it up and one day you will become strong enough to smash even the biggest boulder with one punch. Hur-rah!" [SRF 5/5] I have learned Quan the Mighty&#39;s technique for smashing rocks with my bare fist! But could it really be that simple? I wonder if I should test it out... <strong>I acquired a new Skill! I can activate this skill in certain locations.</strong><br><br>');
 		}
 		$("#book5").remove();
 		books_read[4] = 1;
@@ -8432,10 +8432,10 @@ progress::-moz-progress-bar {
 	}
 
 	function stamina_check() {
-		var previous = $(display).html();
-		$(display_last).html(previous);
 		var currentStamina = $(".stamina").val();
-		if (currentStamina < 10) {
+		if (currentStamina < 20) {
+			var previous = $(display).html();
+			$(display_last).html(previous);
 			$(display).html('Li-fen stops the match. "Hey, are you okay? You look out of breath. How about we call this one a draw. Go home and rest. We can have a rematch another day!"<br><br>');
 			$(actions).html("<button onclick='return_to_farm()'>Continue</button>");
 			$("#e_hand").html("");
@@ -9895,7 +9895,7 @@ progress::-moz-progress-bar {
 		var previous = $(display).html();
 		$(display_last).html(previous);
 		$(display).html('Can you teach me to forage? I ask.<br>');
-		$(display).append('"Foraging is easy," Master Yang says. "Just look closely at the ground and dig around, haw-haw! Of course, the real challenge for us herbalists is in knowing whether a particular herb can be used to alleviate indigestion or will cause a week-long stomachache. Now that is precious knowledge! However, such an education is a lifelong journey, and you seem like you have more pressing matters to attend to at the moment. Master Yang taught me the basics to foraging! <strong>I acquired a new Skill!</strong>"<br><br>');
+		$(display).append('"Foraging is easy," Master Yang says. "Just look closely at the ground and dig around, haw-haw! Of course, the real challenge for us herbalists is in knowing whether a particular herb can be used to alleviate indigestion or will cause a week-long stomachache. Now that is precious knowledge! However, such an education is a lifelong journey, and you seem like you have more pressing matters to attend to at the moment. Master Yang taught me the basics to foraging! <strong>I acquired a new Skill! I can activate this skill in certain locations.</strong>"<br><br>');
 		$("#find_herbs").remove();
 		foraging = 1;
 		addSkill("<div id='forage_skill' class='active_skill'>Forage <button id='use_forage' onclick='activate_forage()'>Activate</button></div>",1);
@@ -9903,7 +9903,7 @@ progress::-moz-progress-bar {
 	}
 	
 	function activate_forage() {
-		if(current_loc == "Imperial Road") {
+		if(current_loc == "Soldier Camp") {
 			var previous = $(display).html();
 			$(display_last).html(previous);
 			if(money == 0) {
