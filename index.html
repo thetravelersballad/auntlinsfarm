@@ -8096,7 +8096,7 @@ progress::-moz-progress-bar {
 	function fan_residence() {
 		reset_display();
 		if(game_finished) {
-			$(display_persist).html('A servant leads me onto the Fan Family estate, bowing the whole time. "Please let me know if there is anything you need. Mr. Fan has made it clear that the <i>yingxiong</i> of Pleasant Weather Halmet is a most honored guest."<br><br>');
+			$(display_persist).html('A servant leads me onto the Fan Family estate, bowing the whole time. "Please let me know if there is anything you need. Mr. Fan has made it clear that the <i>yingxiong</i> of Pleasant Weather Hamlet is a most honored guest."<br><br>');
 		} else {
 			$(display_persist).html('The Fan residence is on a large and well-maintained estate. A servant leads me into the main courtyard. "As a relative of Lin Mei-hua&#39;s, you are our special guest. Mr. Fan has instructed that you may visit the grounds as you please."<br><br>');
 		}
@@ -9029,6 +9029,7 @@ progress::-moz-progress-bar {
 		$(display).html("May I feed the turtles? I ask.<br>");
 		$(display).append('Mrs. Fan nods. "Certainly. Here take these." <strong>Mrs. Fan hands me a few goji berries!</strong> "Some call these wolfberries, but my turtles seem to love them," she says.<br><br>I offer a goji berry to a turtle. It slowly opens its toothless mouth and leisurely gobbles it up.<br><br>');
 		$("#feed_turtles").remove();
+		fed_turtle = 1;
 		goji += 3;
 		if($(".goji_box").length) {
 			$(".goji_box").html("Goji Berry ("+goji+"x) <button class='eat' onclick='eat_food(1,5)'>Eat</button>");
@@ -10048,7 +10049,7 @@ progress::-moz-progress-bar {
 		var previous = $(display).html();
 		$(display_last).html(previous);
 		$(display).html('Has my aunt passed through? I ask. She&#39;s been missing.<br>');
-		$(display).append('"Hmm, missing aunt, you say? I&#39;m sorry, I have been living in the woods for so long that I haven&#39;t been up to date on all the goings-on in the halmet," Master Yang says. "But I can tell you that I have been out here a while now, and haven&#39;t seen anyone come by. Except now you, of course, haw-haw."<br><br>');
+		$(display).append('"Hmm, missing aunt, you say? I&#39;m sorry, I have been living in the woods for so long that I haven&#39;t been up to date on all the goings-on in the hamlet," Master Yang says. "But I can tell you that I have been out here a while now, and haven&#39;t seen anyone come by. Except now you, of course, haw-haw."<br><br>');
 		$("#yang").remove();
 		curiosity[10] = 1;
 	}
