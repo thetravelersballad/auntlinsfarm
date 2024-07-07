@@ -7047,12 +7047,12 @@ progress::-moz-progress-bar {
 			$(display).html('"Appendix: Remember, punching rocks all day may bruise your knuckles. Eat lots of steamed buns to recover before trying again! Keep it up and one day you will become strong enough to smash even the biggest boulder with one punch. Hur-rah!" [SRF 5/5]<br><br>');
 		} else {
 			$(display).html('"Appendix: Remember, punching rocks all day may bruise your knuckles. Eat lots of steamed buns to recover before trying again! Keep it up and one day you will become strong enough to smash even the biggest boulder with one punch. Hur-rah!" [SRF 5/5] I have learned Quan the Mighty&#39;s technique for smashing rocks with my bare fist! But could it really be that simple? I wonder if I should test it out... <strong>I acquired a new Skill! I can activate this skill in certain locations.</strong><br><br>');
+			addSkill("<div id='rocksmash_skill' class='active_skill'>Rock Smash <button id='use_rocksmash' onclick='activate_rocksmash()'>Activate</button></div>",1);
+			$("#use_rocksmash").attr('disabled','disabled');
+			rocksmash = 1;
 		}
 		$("#book5").remove();
 		books_read[4] = 1;
-		rocksmash = 1;
-		addSkill("<div id='rocksmash_skill' class='active_skill'>Rock Smash <button id='use_rocksmash' onclick='activate_rocksmash()'>Activate</button></div>",1);
-		$("#use_rocksmash").attr('disabled','disabled');
 	}
 	
 	function activate_rocksmash() {
