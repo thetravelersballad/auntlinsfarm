@@ -1799,7 +1799,7 @@ progress::-moz-progress-bar {
 		if(newStamina <= 20 && alerts && !stamina_alert){
 			$(game_title).show();
 			dismiss_alert = 1;
-			$(game_title).html('My stamina is low! <button id="notice_time" onclick="dismiss()">Dismiss (10)</button><br><button onclick="rest()">Go Home and Sleep</button>');
+			$(game_title).html('My stamina is low! <button id="notice_time" onclick="dismiss()">Dismiss (10)</button>');
 			notice_timer = 9;
 			auto_dismiss();
 			stamina_alert = 1;
